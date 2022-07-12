@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,43 +8,53 @@
     <link rel="stylesheet" href="css/main.css">
     <title>Calculator</title>
 </head>
+
 <body>
     <div id="app">
-        <select v-model="selected">
-            <option disabled value="">Выберите один из вариантов</option>
-            <option v-for="title in jsonData" v-bind:id="title.id" :value="title">{{ title.title }}</option>
-        </select>
-        <br>
-        <br>
-        <label for="bzmp" v-for="mzp in selected.mzp">
-            <span>{{ mzp.titleMzp }}</span>
-            <input :value="mzp" id="bzmp" v-model="pickedMzp" type="radio" name="mzp">
-        </label>
-        <br>
-        <br>
-        <label for="rezident" v-for="rez in pickedMzp.rez">
-            <span>{{ rez.name }}</span>
-            <input :value="rez" id="rezident" v-model="pickedRezident" type="radio" name="rezident">
-        </label>
-        <label for="zp">
-            <span>Заработная плата:</span>
-            <input id="zp" v-model="zp" type="text">
-        </label>
-        <button v-on:click="calc">Расчитать</button>
-        <br>
-        <p>Заработная плата ("на руки"): {{ result }}</p>
-        <div>
-            {{ opv }}
+        <div class="calculator">
+            <select v-model="selected">
+                <option disabled value="">Выберите один из вариантов</option>
+                <option v-for="title in jsonData" :value="title">{{ title.title }}</option>
+            </select>
+            <div class="calculator__box">
+                <label for="bzmp" v-for="mzp in selected.mzp">
+                    <span>{{ mzp.titleMzp }}</span>
+                    <input :value="mzp" id="bzmp" v-model="pickedMzp" type="radio" name="mzp">
+                </label>
+            </div>
+            <div class="calculator__box">
+                <label for="rezident" v-for="rez in pickedMzp.rez">
+                    <span>{{ rez.name }}</span>
+                    <input :value="rez" id="rezident" v-model="pickedRezident" type="radio" name="rezident">
+                </label>
+            </div>
+
+            <label for="zp">
+                <span>Заработная плата:</span>
+                <input id="zp" v-model.number="zp" type="text">
+            </label>
+            <button v-on:click="calc">Расчитать</button>
+            <p>Заработная плата ("на руки"): {{ result }}</p>
+            <div class="calculator__total">
+                <span>КОР90: {{ kor90 }}</span>
+                <span>ОПВ: {{ opv }}</span>
+                <span>ИПН: {{ ipn }}</span>
+                <span>ВОСМС: {{ vosms }}</span>
+                <span>ООСМС: {{ oosms }}</span>
+                <span>СО: {{ so }}</span>
+                <span>СН: {{ sn }}</span>
+            </div>
         </div>
-        
-             
-        
-       
-        
+
+
+
+
+
 
 
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <script src="js/main.js"></script>
 </body>
+
 </html>

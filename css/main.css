@@ -1,4 +1,28 @@
 * {
     font-family: Arial, Helvetica, sans-serif;
     outline: none;
+
+}
+
+.calculator {
+    display: flex;
+    flex-direction: column;
+    max-width: 350px;
+    gap: 30px;
+}
+
+.calculator__box {
+    display: flex;
+    flex-direction: column;
+}
+
+.calculator__box label {
+    display: flex;
+    justify-content: space-between;
+    max-width: 155px;
+}
+
+.calculator__total {
+    display: flex;
+    flex-direction: column;
 }
