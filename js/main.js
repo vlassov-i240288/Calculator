@@ -51,12 +51,17 @@ let app = new Vue({
                         this.ipn = Math.floor((this.zp - this.opv - this.kor90 - 0 - this.vosms) * this.pickedRezident.koef.opv);
                         this.oosms = this.zp * this.pickedRezident.koef.oosms;
                         if (this.zp >= 70000) {
-                            this.so = (this.zp - this.opv) * this.pickedRezident.koef.so;
+                            this.so = Math.floor((this.zp - this.opv) * this.pickedRezident.koef.so);
                             this.sn = Math.floor((this.zp - this.opv - this.vosms) * 0.095 - this.so);
+                            if (this.zp >= 200000) {
+                                this.kor90 = 0;
+                                this.ipn = Math.floor((this.zp - this.opv - 0 - this.vosms) * this.pickedRezident.koef.opv);
+                            }
                         } else if (this.zp < 70000) {
-                            this.so = this.mzp * this.pickedRezident.koef.so;
+                            this.so = Math.floor(this.mzp * this.pickedRezident.koef.so);
                             this.sn = Math.floor(this.mrp14 * 0.095 - this.so);
                         }
+
                         this.result = Math.floor(this.zp - this.ipn - this.opv - this.vosms) + ' тенге';
                     }
                     if (this.pickedRezident.name == "Не резидент") {
@@ -66,10 +71,10 @@ let app = new Vue({
                         this.ipn = Math.floor(this.zp * this.pickedRezident.koef.opv);
                         this.oosms = this.zp * this.pickedRezident.koef.oosms;
                         if (this.zp >= 70000) {
-                            this.so = (this.zp - this.opv) * this.pickedRezident.koef.so;
+                            this.so = Math.floor((this.zp - this.opv) * this.pickedRezident.koef.so);
                             this.sn = Math.floor((this.zp - this.opv - this.vosms) * 0.095 - this.so);
                         } else if (this.zp < 70000) {
-                            this.so = this.mzp * this.pickedRezident.koef.so;
+                            this.so = Math.floor(this.mzp * this.pickedRezident.koef.so);
                             this.sn = Math.floor(this.mrp14 * 0.095 - this.so);
                         }
                         this.result = Math.floor(this.zp - this.ipn - this.opv - this.vosms) + ' тенге';
@@ -82,8 +87,12 @@ let app = new Vue({
                         if (this.zp >= 70000) {
                             this.ipn = Math.floor((this.zp - this.opv - this.pickedRezident.koef.kor9070 - this.mrp14 - this.vosms) * this.pickedRezident.koef.ipn70);
                             this.kor90 = Math.floor((this.zp - this.opv - this.mrp14 - this.vosms) * this.pickedRezident.koef.kor9070);
-                            this.so = (this.zp - this.opv) * this.pickedRezident.koef.so;
+                            this.so = Math.floor((this.zp - this.opv) * this.pickedRezident.koef.so);
                             this.sn = Math.floor((this.zp - this.opv - this.vosms) * 0.095 - this.so);
+                            if (this.zp >= 200000) {
+                                this.kor90 = 0;
+                                this.ipn = Math.floor((this.zp - this.opv - this.mrp14 - this.vosms) * this.pickedRezident.koef.opv);
+                            }
                         } else if (this.zp < 70000) {
                             this.ipn = this.pickedRezident.koef.ipn;
                             this.kor90 = (this.zp - this.opv - this.vosms) * this.pickedRezident.koef.kor90;
@@ -100,7 +109,7 @@ let app = new Vue({
                         this.ipn = Math.floor(this.zp * this.pickedRezident.koef.opv);
                         this.oosms = this.zp * this.pickedRezident.koef.oosms;
                         if (this.zp >= 70000) {
-                            this.so = (this.zp - this.opv) * this.pickedRezident.koef.so;
+                            this.so = Math.floor((this.zp - this.opv) * this.pickedRezident.koef.so);
                             this.sn = Math.floor((this.zp - this.opv - this.vosms) * 0.095 - this.so);
                         } else if (this.zp < 70000) {
                             this.so = this.mzp * this.pickedRezident.koef.so;
@@ -124,6 +133,10 @@ let app = new Vue({
                         if (this.zp >= 70000) {
                             this.so = (this.zp - this.opv) * this.pickedRezident.koef.so;
                             this.sn = Math.floor((this.zp - this.opv - this.vosms) * 0.095 - this.so);
+                            if (this.zp >= 200000) {
+                                this.kor90 = 0;
+                                this.ipn = Math.floor((this.zp - this.opv - 0 - this.vosms) * this.pickedRezident.koef.ipn);
+                            }
                         } else if (this.zp < 70000) {
                             this.so = this.mzp * this.pickedRezident.koef.so;
                             this.sn = Math.floor(this.mrp14 * 0.095 - this.so);
@@ -156,6 +169,10 @@ let app = new Vue({
                             this.kor90 = Math.floor((this.zp - this.opv - this.mrp14 - this.vosms) * this.pickedRezident.koef.kor9070);
                             this.so = (this.zp - this.opv) * this.pickedRezident.koef.so;
                             this.sn = Math.floor((this.zp - this.opv - this.vosms) * 0.095 - this.so);
+                            if (this.zp >= 200000) {
+                                this.kor90 = 0;
+                                this.ipn = Math.floor((this.zp - this.opv - this.mrp14 - this.vosms) * this.pickedRezident.koef.ipn200);
+                            }
                         } else if (this.zp < 70000) {
                             this.ipn = this.pickedRezident.koef.ipn;
                             this.kor90 = (this.zp - this.opv - this.vosms) * this.pickedRezident.koef.kor90;
