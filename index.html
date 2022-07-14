@@ -12,17 +12,20 @@
 <body>
     <div id="app">
         <div class="calculator">
-            <select v-model="selected">
+            <p v-bind:style="styleWarningSelect">Укажите категорию</p>
+            <select v-model="selected" v-on:click="clearPickedMzp">
                 <option disabled value="">Выберите один из вариантов</option>
                 <option v-for="title in jsonData" :value="title">{{ title.title }}</option>
             </select>
             <div class="calculator__box">
+                <p v-bind:style="styleWarningMzp">Укажите МЗП</p>
                 <label for="bzmp" v-for="mzp in selected.mzp">
                     <span>{{ mzp.titleMzp }}</span>
-                    <input :value="mzp" id="bzmp" v-model="pickedMzp" type="radio" name="mzp">
+                    <input :value="mzp" v-on:click="clearPickedRezident" id="bzmp" v-model="pickedMzp" type="radio" name="mzp">
                 </label>
             </div>
             <div class="calculator__box">
+                <p v-bind:style="styleWarningRez">Укажите резидента</p>
                 <label for="rezident" v-for="rez in pickedMzp.rez">
                     <span>{{ rez.name }}</span>
                     <input :value="rez" id="rezident" v-model="pickedRezident" type="radio" name="rezident">
@@ -45,12 +48,6 @@
                 <span>СН: {{ sn }}</span>
             </div>
         </div>
-
-
-
-
-
-
 
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
