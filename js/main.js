@@ -71,77 +71,67 @@ let app = new Vue({
                 this.selected.title == "ИП на СНР студент") {
                 if (this.pickedMzp.titleMzp == "Без вычета МЗП") {
                     if (this.pickedRezident.name == "Резидент") {
-                        this.opv = this.zp * this.pickedRezident.koef.opv;
-                        this.vosms = this.zp * this.pickedRezident.koef.vosms;
-                        this.kor90 = (this.zp - this.opv - this.vosms) * this.pickedRezident.koef.kor90;
-                        this.ipn = Math.floor((this.zp - this.opv - this.kor90 - 0 - this.vosms) * this.pickedRezident.koef.opv);
-                        this.oosms = this.zp * this.pickedRezident.koef.oosms;
-                        if (this.zp >= 70000) {
-                            this.so = Math.floor((this.zp - this.opv) * this.pickedRezident.koef.so);
-                            this.sn = Math.floor((this.zp - this.opv - this.vosms + 1) * 0.095 - this.so);
-                            if (this.zp >= 200000) {
-                                this.kor90 = 0;
-                                this.ipn = Math.floor((this.zp - this.opv - 0 - this.vosms) * this.pickedRezident.koef.opv);
-                            }
-                        } else if (this.zp < 70000) {
-                            this.so = Math.floor(this.mzp * this.pickedRezident.koef.so);
-                            this.sn = Math.floor(this.mrp14 * 0.095 - this.so + 1);
+                        this.opv = Math.round(this.zp * this.pickedRezident.koef.opv);
+                        this.vosms = Math.round(this.zp * this.pickedRezident.koef.vosms);
+                        this.kor90 = Math.round((this.zp - this.opv - this.vosms) * this.pickedRezident.koef.kor90);
+                        this.ipn = Math.round((this.zp - this.opv - this.kor90 - 0 - this.vosms) * this.pickedRezident.koef.opv);
+                        this.oosms = Math.round(this.zp * this.pickedRezident.koef.oosms);
+                        this.so = Math.round(this.mzp * this.pickedRezident.koef.so);
+                        this.sn = Math.round(this.mrp14 * 0.095 - this.so);
+                        if (this.zp >= 76576) {
+                            this.kor90 = 0;
+                            this.ipn = Math.round((this.zp - this.opv - 0 - this.vosms) * this.pickedRezident.koef.opv);
                         }
-
-                        this.result = Math.floor(this.zp - this.ipn - this.opv - this.vosms) + ' тенге';
+                        this.result = Math.round(this.zp - this.ipn - this.opv - this.vosms) + ' тенге';
                     }
                     if (this.pickedRezident.name == "Не резидент") {
-                        this.opv = this.zp * this.pickedRezident.koef.opv;
-                        this.vosms = this.zp * this.pickedRezident.koef.vosms;
-                        this.kor90 = (this.zp - this.opv - this.vosms) * this.pickedRezident.koef.kor90;
-                        this.ipn = Math.floor(this.zp * this.pickedRezident.koef.opv);
-                        this.oosms = this.zp * this.pickedRezident.koef.oosms;
-                        if (this.zp >= 70000) {
-                            this.so = Math.floor((this.zp - this.opv) * this.pickedRezident.koef.so);
-                            this.sn = Math.floor((this.zp - this.opv - this.vosms + 1) * 0.095 - this.so);
-                        } else if (this.zp < 70000) {
-                            this.so = Math.floor(this.mzp * this.pickedRezident.koef.so);
-                            this.sn = Math.floor(this.mrp14 * 0.095 - this.so + 1);
+                        this.opv = Math.round(this.zp * this.pickedRezident.koef.opv);
+                        this.vosms = Math.round(this.zp * this.pickedRezident.koef.vosms);
+                        this.kor90 = Math.round((this.zp - this.opv - this.vosms) * this.pickedRezident.koef.kor90);
+                        this.ipn = Math.round((this.zp - this.opv - this.kor90 - 0 - this.vosms) * this.pickedRezident.koef.opv);
+                        this.oosms = Math.round(this.zp * this.pickedRezident.koef.oosms);
+                        if (this.zp >= 76576) {
+                            this.kor90 = 0;
+                            this.ipn = Math.round((this.zp - this.opv - 0 - this.vosms) * this.pickedRezident.koef.opv);
                         }
                         this.result = Math.floor(this.zp - this.ipn - this.opv - this.vosms) + ' тенге';
                     }
                 }
                 if (this.pickedMzp.titleMzp == "С вычетом МЗП") {
                     if (this.pickedRezident.name == "Резидент") {
-                        this.opv = this.zp * this.pickedRezident.koef.opv;
-                        this.vosms = this.zp * this.pickedRezident.koef.vosms;
-                        if (this.zp >= 70000) {
-                            this.ipn = Math.floor((this.zp - this.opv - this.pickedRezident.koef.kor9070 - this.mrp14 - this.vosms) * this.pickedRezident.koef.ipn70);
-                            this.kor90 = Math.floor((this.zp - this.opv - this.mrp14 - this.vosms) * this.pickedRezident.koef.kor9070);
-                            this.so = Math.floor((this.zp - this.opv) * this.pickedRezident.koef.so);
-                            this.sn = Math.floor((this.zp - this.opv - this.vosms + 1) * 0.095 - this.so);
-                            if (this.zp >= 200000) {
-                                this.kor90 = 0;
-                                this.ipn = Math.floor((this.zp - this.opv - this.mrp14 - this.vosms) * this.pickedRezident.koef.opv);
-                            }
-                        } else if (this.zp < 70000) {
-                            this.ipn = this.pickedRezident.koef.ipn;
-                            this.kor90 = (this.zp - this.opv - this.vosms) * this.pickedRezident.koef.kor90;
-                            this.so = this.mzp * this.pickedRezident.koef.so;
-                            this.sn = Math.floor(this.mrp14 * 0.095 - this.so + 1);
+                        this.opv = Math.round(this.zp * this.pickedRezident.koef.opv);
+                        this.vosms = Math.round(this.zp * this.pickedRezident.koef.vosms);
+                        this.ipn = 0;
+                        this.kor90 = 0;
+                        if (this.zp >= 48731) {
+                            this.ipn = Math.round((this.zp - this.opv - this.pickedRezident.koef.kor9070 - this.mrp14 - this.vosms) * this.pickedRezident.koef.ipn70);
+                            this.kor90 = Math.round((this.zp - this.opv - this.mrp14 - this.vosms) * this.pickedRezident.koef.kor9070);
+                        } 
+                        if (this.zp >= 76576) {
+                            this.kor90 = 0;
+                            this.ipn = Math.round((this.zp - this.opv - this.mrp14 - this.vosms) * this.pickedRezident.koef.ipn);
                         }
-                        this.oosms = this.zp * this.pickedRezident.koef.oosms;
-                        this.result = Math.floor(this.zp - this.ipn - this.opv - this.vosms) + ' тенге';
+                        this.so = Math.round(this.mzp * this.pickedRezident.koef.so);
+                        this.sn = Math.round(this.mrp14 * 0.095 - this.so);
+                        this.oosms = Math.round(this.zp * this.pickedRezident.koef.oosms);
+                        this.result = Math.round(this.zp - this.ipn - this.opv - this.vosms) + ' тенге';
                     }
                     if (this.pickedRezident.name == "Не резидент") {
-                        this.opv = this.zp * this.pickedRezident.koef.opv;
-                        this.vosms = this.zp * this.pickedRezident.koef.vosms;
-                        this.kor90 = (this.zp - this.opv - this.vosms) * this.pickedRezident.koef.kor90;
-                        this.ipn = Math.floor(this.zp * this.pickedRezident.koef.opv);
-                        this.oosms = this.zp * this.pickedRezident.koef.oosms;
-                        if (this.zp >= 70000) {
-                            this.so = Math.floor((this.zp - this.opv) * this.pickedRezident.koef.so);
-                            this.sn = Math.floor((this.zp - this.opv - this.vosms + 1) * 0.095 - this.so);
-                        } else if (this.zp < 70000) {
-                            this.so = this.mzp * this.pickedRezident.koef.so;
-                            this.sn = Math.floor(this.mrp14 * 0.095 - this.so + 1);
-                        }
-                        this.result = Math.floor(this.zp - this.ipn - this.opv - this.vosms) + ' тенге';
+                        this.opv = Math.round(this.zp * this.pickedRezident.koef.opv);
+                        this.vosms = Math.round(this.zp * this.pickedRezident.koef.vosms);
+                        this.kor90 = 0;
+                        this.ipn = Math.round(this.zp * this.pickedRezident.koef.opv);
+                        this.oosms = Math.round(this.zp * this.pickedRezident.koef.oosms);
+                        // if (this.zp >= 70000) {
+                        //     this.so = Math.round((this.zp - this.opv) * this.pickedRezident.koef.so);
+                        //     this.sn = Math.round((this.zp - this.opv - this.vosms + 1) * 0.095 - this.so);
+                        // } else if (this.zp < 70000) {
+                        //     this.so = this.mzp * this.pickedRezident.koef.so;
+                        //     this.sn = Math.round(this.mrp14 * 0.095 - this.so + 1);
+                        // }
+                        this.so = Math.round(this.mzp * this.pickedRezident.koef.so);
+                        this.sn = Math.round(this.mrp14 * 0.095 - this.so);
+                        this.result = Math.round(this.zp - this.ipn - this.opv - this.vosms) + ' тенге';
                     }
                 }
             }
@@ -151,76 +141,56 @@ let app = new Vue({
                 this.selected.title == "ИП на СНР пенсионер") {
                 if (this.pickedMzp.titleMzp == "Без вычета МЗП") {
                     if (this.pickedRezident.name == "Резидент") {
-                        this.opv = this.zp * this.pickedRezident.koef.opv;
-                        this.vosms = this.zp * this.pickedRezident.koef.vosms;
-                        this.kor90 = (this.zp - this.opv - this.vosms) * this.pickedRezident.koef.kor90;
-                        this.ipn = Math.floor((this.zp - this.opv - this.kor90 - 0 - this.vosms) * 0.1);
+                        this.opv = Math.round(this.zp * this.pickedRezident.koef.opv);
+                        this.vosms = Math.round(this.zp * this.pickedRezident.koef.vosms);
+                        this.kor90 = Math.round((this.zp - this.opv - this.vosms) * this.pickedRezident.koef.kor90);
+                        this.ipn = Math.round((this.zp - this.opv - this.kor90 - 0 - this.vosms) * 0.1);
                         this.oosms = this.zp * this.pickedRezident.koef.oosms;
-                        if (this.zp >= 70000) {
-                            this.so = (this.zp - this.opv) * this.pickedRezident.koef.so;
-                            this.sn = Math.floor((this.zp - this.opv - this.vosms + 1) * 0.095 - this.so);
-                            if (this.zp >= 200000) {
-                                this.kor90 = 0;
-                                this.ipn = Math.floor((this.zp - this.opv - 0 - this.vosms) * this.pickedRezident.koef.ipn);
-                            }
-                        } else if (this.zp < 70000) {
-                            this.so = this.mzp * this.pickedRezident.koef.so;
-                            this.sn = Math.floor(this.mrp14 * 0.095 - this.so + 1);
+                        if (this.zp >= 76576) {
+                            this.kor90 = 0;
+                            this.ipn = Math.round((this.zp - this.opv - 0 - this.vosms) * this.pickedRezident.koef.ipn);
                         }
                         this.result = Math.floor(this.zp - this.ipn - this.opv - this.vosms) + ' тенге';
                     }
+                    
                     if (this.pickedRezident.name == "Не резидент") {
-                        this.opv = this.zp * this.pickedRezident.koef.opv;
-                        this.vosms = this.zp * this.pickedRezident.koef.vosms;
-                        this.kor90 = (this.zp - this.opv - this.vosms) * this.pickedRezident.koef.kor90;
-                        this.ipn = Math.floor(this.zp * 0.1);
+                        this.opv = Math.round(this.zp * this.pickedRezident.koef.opv);
+                        this.vosms = Math.round(this.zp * this.pickedRezident.koef.vosms);
+                        this.kor90 = Math.round((this.zp - this.opv - this.vosms) * this.pickedRezident.koef.kor90);
+                        this.ipn = Math.round(this.zp * 0.1);
                         this.oosms = this.zp * this.pickedRezident.koef.oosms;
-                        if (this.zp >= 70000) {
-                            this.so = (this.zp - this.opv) * this.pickedRezident.koef.so;
-                            this.sn = Math.floor((this.zp - this.opv - this.vosms + 1) * 0.095 - this.so);
-                        } else if (this.zp < 70000) {
-                            this.so = this.mzp * this.pickedRezident.koef.so;
-                            this.sn = Math.floor(this.mrp14 * 0.095 - this.so + 1);
-                        }
                         this.result = Math.floor(this.zp - this.ipn - this.opv - this.vosms) + ' тенге';
                     }
                 }
                 if (this.pickedMzp.titleMzp == "С вычетом МЗП") {
                     if (this.pickedRezident.name == "Резидент") {
-                        this.opv = this.zp * this.pickedRezident.koef.opv;
-                        this.vosms = this.zp * this.pickedRezident.koef.vosms;
+                        this.opv = Math.round(this.zp * this.pickedRezident.koef.opv);
+                        this.vosms = Math.round(this.zp * this.pickedRezident.koef.vosms);
                         this.oosms = this.zp * this.pickedRezident.koef.oosms;
-                        if (this.zp >= 70000) {
-                            this.ipn = Math.floor((this.zp - this.opv - this.pickedRezident.koef.kor9070 - this.mrp14 - this.vosms) * this.pickedRezident.koef.ipn70);
-                            this.kor90 = Math.floor((this.zp - this.opv - this.mrp14 - this.vosms) * this.pickedRezident.koef.kor9070);
-                            this.so = (this.zp - this.opv) * this.pickedRezident.koef.so;
-                            this.sn = Math.floor((this.zp - this.opv - this.vosms + 1) * 0.095 - this.so);
-                            if (this.zp >= 200000) {
-                                this.kor90 = 0;
-                                this.ipn = Math.floor((this.zp - this.opv - this.mrp14 - this.vosms) * this.pickedRezident.koef.ipn200);
-                            }
-                        } else if (this.zp < 70000) {
-                            this.ipn = this.pickedRezident.koef.ipn;
-                            this.kor90 = (this.zp - this.opv - this.vosms) * this.pickedRezident.koef.kor90;
-                            this.so = this.mzp * this.pickedRezident.koef.so;
-                            this.sn = Math.floor(this.mrp14 * 0.095 - this.so + 1);
+                        if (this.zp >= 42883) {
+                            this.kor90 = Math.round((this.zp - this.opv - this.mrp14 - 0) * this.pickedRezident.koef.kor90);
+                            this.ipn = Math.round((this.zp - this.opv - this.kor90 - this.mrp14 - 0) * this.pickedRezident.koef.ipn);
                         }
-                        this.result = Math.floor(this.zp - this.ipn - this.opv - this.vosms) + ' тенге';
+                        if (this.zp >= 76576) {
+                            this.kor90 = 0;
+                            this.ipn = Math.round((this.zp - this.opv - this.kor90 - this.mrp14 - 0) * this.pickedRezident.koef.ipn);
+                        }
+                        this.result = Math.round(this.zp - this.ipn - this.opv - this.vosms) + ' тенге';
                     }
                     if (this.pickedRezident.name == "Не резидент") {
                         this.opv = this.zp * this.pickedRezident.koef.opv;
                         this.vosms = this.zp * this.pickedRezident.koef.vosms;
                         this.kor90 = (this.zp - this.opv - this.vosms) * this.pickedRezident.koef.kor90;
-                        this.ipn = Math.floor(this.zp * 0.1);
+                        this.ipn = Math.round(this.zp * 0.1);
                         this.oosms = this.zp * this.pickedRezident.koef.oosms;
                         if (this.zp >= 70000) {
                             this.so = (this.zp - this.opv) * this.pickedRezident.koef.so;
-                            this.sn = Math.floor((this.zp - this.opv - this.vosms + 1) * 0.095 - this.so);
+                            this.sn = Math.round((this.zp - this.opv - this.vosms + 1) * 0.095 - this.so);
                         } else if (this.zp < 70000) {
                             this.so = this.mzp * this.pickedRezident.koef.so;
-                            this.sn = Math.floor(this.mrp14 * 0.095 - this.so + 1);
+                            this.sn = Math.round(this.mrp14 * 0.095 - this.so + 1);
                         }
-                        this.result = Math.floor(this.zp - this.ipn - this.opv - this.vosms) + ' тенге';
+                        this.result = Math.round(this.zp - this.ipn - this.opv - this.vosms) + ' тенге';
                     }
                 }
             }
