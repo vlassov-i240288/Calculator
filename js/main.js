@@ -115,7 +115,7 @@ let app = new Vue({
                         }
                         if (this.zp >= 466668) {
                             this.kor90 = 0;
-                            this.ipn = Math.round((this.zp - this.opv - this.kor90 - 0 - this.vosms) * this.pickedRezident.koef.opv);
+                            this.ipn = Math.round(this.zp  * this.pickedRezident.koef.opv);
                             this.so = Math.round(420000 * this.pickedRezident.koef.so);
                             this.sn = Math.round((this.zp - this.opv - this.vosms) * this.pickedRezident.koef.sn - this.so);
                         }
@@ -241,7 +241,7 @@ let app = new Vue({
                         }
                         if (this.zp >= 466668) {
                             this.kor90 = 0;
-                            this.ipn = Math.round((this.zp - this.opv - this.kor90 - 0 - this.vosms) * this.pickedRezident.koef.opv);
+                            this.ipn = Math.round(this.zp  * this.pickedRezident.koef.opv);
                             this.so = Math.round(420000 * this.pickedRezident.koef.so);
                             this.sn = Math.round((this.zp - this.opv - this.vosms) * this.pickedRezident.koef.sn - this.so);
                         }
