@@ -38,14 +38,22 @@
             </label>
             <button v-on:click="calc">Расчитать</button>
             <p>Заработная плата ("на руки"): {{ result }}</p>
+            <span class="formul">{{ formulResult }}</span>
             <div class="calculator__total">
                 <span>КОР90: {{ kor90 }}</span>
+                <span class="formul">{{ formulKor90 }}</span>
                 <span>ОПВ: {{ opv }}</span>
+                <span class="formul">{{ formulOpv }}</span>
                 <span>ИПН: {{ ipn }}</span>
+                <span class="formul">{{ formulIpn }}</span>
                 <span>ВОСМС: {{ vosms }}</span>
+                <span class="formul">{{ formulVosms }}</span>
                 <span>СО: {{ so }}</span>
+                <span class="formul">{{ formulSo }}</span>
                 <span>СН: {{ sn }}</span>
+                <span class="formul">{{ formulSn }}</span>
                 <span>ООСМС: {{ oosms }}</span>
+                <span class="formul">{{ formulOosms }}</span>
             </div>
         </div>
 
