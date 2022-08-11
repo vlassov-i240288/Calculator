@@ -46,6 +46,18 @@ let app = new Vue({
             color: 'red',
             textTransform: 'uppercase',
             display: 'none'
+        },
+
+        styleWarningZp: {
+            color: 'red',
+            textTransform: 'uppercase',
+            display: 'none'
+        },
+
+        formul: {
+            display: 'none',
+            color: 'cornflowerblue',
+            fontSize: '12px'
         }
 
     },
@@ -68,19 +80,6 @@ let app = new Vue({
         clearPickedRezident() {
             this.pickedRezident = '';
         },
-
-        // showFormuls() {
-        //     this.formulOpv = `расчёт: ОПВ = ЗП ${this.zp} * ${this.pickedRezident.koef.opv}`;
-        //     this.formulVosms = `расчёт: ВОСМС = ЗП ${this.zp} * ${this.pickedRezident.koef.vosms}`;
-        //     this.formulKor90 = `расчёт: КОР90 = (ЗП ${this.zp} - ОПВ ${this.opv} - ВОСМС ${this.vosms}) * ${this.pickedRezident.koef.kor90}`;
-        //     this.formulIpn = `расчёт: ИПН = (ЗП ${this.zp} - ОПВ ${this.opv} - КОР90 ${this.kor90} - 0 - ВОСМС ${this.vosms}) * ${this.pickedRezident.koef.opv}`
-        //     this.formulOosms = `расчёт: ООСМС = ЗП ${this.zp} * ${this.pickedRezident.koef.oosms}`;
-        //     this.formulSo = `расчёт: СО = МЗП ${this.mzp} * ${this.pickedRezident.koef.so}`;
-        //     this.formulSn = `расчёт: СН = МРП14 ${this.mrp14} * ${this.pickedRezident.koef.sn} - СО ${this.so}`;
-
-        //     this.formulKor90 = 0;
-
-        // },
 
 
         calc() {
@@ -1539,7 +1538,14 @@ let app = new Vue({
                 this.styleWarningRez.display = 'none'
             }
 
-            // this.showFormuls();
+            if (this.zp == '') {
+                this.styleWarningZp.display = 'inline-block';
+                this.formul.display = 'none';
+                
+            } else {
+                this.styleWarningZp.display = 'none';
+                this.formul.display = 'inline-block';
+            }
 
         },
 
