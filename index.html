@@ -11,20 +11,35 @@
 
 <body>
     <div id="app">
+        <!-- <select>
+            <option disabled value="">test selected</option>
+            <option >selected 1</option>
+            <option v-bind:value="{ visible=!visible }">selected 2</option>
+        </select>
+        <div v-if="!visible">
+            test
+        </div> -->
+        <!-- <p v-if="visible">Первый параграф</p>
+    <p>Второй параграф</p>
+    <button v-on:click="visible=!visible">{{visible?'Скрыть':'Показать'}}</button> -->
+
+
+
         <div class="calculator">
             <p v-bind:style="styleWarningSelect">Укажите категорию</p>
-            <select v-model="selected" v-on:click="clearPickedMzp">
+            <select v-model="selected" v-on:click="clearPickedMzp" @change="checkSelect">
                 <option disabled value="">Выберите один из вариантов</option>
                 <option v-for="title in jsonData" :value="title">{{ title.title }}</option>
             </select>
-            <div class="calculator__box">
+            <div class="calculator__box" v-bind:style="calculator">
                 <p v-bind:style="styleWarningMzp">Укажите МЗП</p>
-                <label  v-for="(mzp, index) in selected.mzp" v-bind:for="100 + index">
+                <label v-for="(mzp, index) in selected.mzp" v-bind:for="100 + index">
                     <span>{{ mzp.titleMzp }}</span>
-                    <input :value="mzp" v-bind:id="100 + index" v-on:click="clearPickedRezident" v-model="pickedMzp" type="radio" name="mzp">
+                    <input :value="mzp" v-bind:id="100 + index" v-on:click="clearPickedRezident" v-model="pickedMzp"
+                        type="radio" name="mzp">
                 </label>
             </div>
-            <div class="calculator__box">
+            <div class="calculator__box" v-bind:style="calculator">
                 <p v-bind:style="styleWarningRez">Укажите резидента</p>
                 <label v-bind:for="200 + index" v-for="(rez, index) in pickedMzp.rez">
                     <span>{{ rez.name }}</span>
@@ -37,23 +52,25 @@
                 <p v-bind:style="styleWarningZp">Введите сумму</p>
             </label>
             <button v-on:click="calc">Расчитать</button>
-            <p>Заработная плата ("на руки"): {{ result }}</p>
-            <span v-bind:style="formul">{{ formulResult }}</span>
-            <div class="calculator__total">
-                <span>КОР90: {{ kor90 }}</span>
-                <span v-bind:style="formul">{{ formulKor90 }}</span>
-                <span>ОПВ: {{ opv }}</span>
-                <span v-bind:style="formul">{{ formulOpv }}</span>
-                <span>ИПН: {{ ipn }}</span>
-                <span v-bind:style="formul">{{ formulIpn }}</span>
-                <span>ВОСМС: {{ vosms }}</span>
-                <span v-bind:style="formul">{{ formulVosms }}</span>
-                <span>СО: {{ so }}</span>
-                <span v-bind:style="formul">{{ formulSo }}</span>
-                <span>СН: {{ sn }}</span>
-                <span v-bind:style="formul">{{ formulSn }}</span>
-                <span>ООСМС: {{ oosms }}</span>
-                <span v-bind:style="formul">{{ formulOosms }}</span>
+            <div v-bind:style="total">
+                <p>Заработная плата ("на руки"): {{ result }}</p>
+                <span v-bind:style="formul">{{ formulResult }}</span>
+                <div class="calculator__total">
+                    <span>КОР90: {{ kor90 }}</span>
+                    <span v-bind:style="formul">{{ formulKor90 }}</span>
+                    <span>ОПВ: {{ opv }}</span>
+                    <span v-bind:style="formul">{{ formulOpv }}</span>
+                    <span>ИПН: {{ ipn }}</span>
+                    <span v-bind:style="formul">{{ formulIpn }}</span>
+                    <span>ВОСМС: {{ vosms }}</span>
+                    <span v-bind:style="formul">{{ formulVosms }}</span>
+                    <span>СО: {{ so }}</span>
+                    <span v-bind:style="formul">{{ formulSo }}</span>
+                    <span>СН: {{ sn }}</span>
+                    <span v-bind:style="formul">{{ formulSn }}</span>
+                    <span>ООСМС: {{ oosms }}</span>
+                    <span v-bind:style="formul">{{ formulOosms }}</span>
+                </div>
             </div>
         </div>
 

@@ -1,6 +1,8 @@
 let app = new Vue({
     el: '#app',
     data: {
+
+
         zp: '',
         mrp: 3063,
         mzp: 60000,
@@ -58,6 +60,15 @@ let app = new Vue({
             display: 'none',
             color: 'cornflowerblue',
             fontSize: '12px'
+        },
+
+        total: {
+            display: 'none'
+        },
+
+        calculator: {
+            display: 'none',
+            flexDirection: 'column'
         }
 
     },
@@ -73,6 +84,10 @@ let app = new Vue({
             }
         },
 
+        checkSelect() {
+            this.calculator.display = 'flex'
+        },
+
         clearPickedMzp() {
             this.pickedMzp = '';
         },
@@ -80,6 +95,8 @@ let app = new Vue({
         clearPickedRezident() {
             this.pickedRezident = '';
         },
+
+
 
 
         calc() {
@@ -1523,7 +1540,9 @@ let app = new Vue({
             if (this.selected == '') {
                 this.styleWarningSelect.display = 'inline-block';
             } else {
-                this.styleWarningSelect.display = 'none'
+                this.styleWarningSelect.display = 'none';
+                // this.calculator__box.display = 'flex'
+
             }
 
             if (this.pickedMzp == '') {
@@ -1541,10 +1560,20 @@ let app = new Vue({
             if (this.zp == '') {
                 this.styleWarningZp.display = 'inline-block';
                 this.formul.display = 'none';
-                
+
             } else {
                 this.styleWarningZp.display = 'none';
                 this.formul.display = 'inline-block';
+            }
+
+
+            if (this.selected == '' ||
+                this.pickedMzp == '' ||
+                this.pickedRezident == '' ||
+                this.zp == '') {
+                this.total.display = 'none';
+            } else {
+                this.total.display = 'block';
             }
 
         },
