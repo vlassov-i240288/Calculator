@@ -11,10 +11,10 @@
     gap: 30px;
 }
 
-.calculator__box {
+/* .calculator__box {
     display: flex;
     flex-direction: column;
-}
+} */
 
 .calculator__box label {
     display: flex;
@@ -26,4 +26,13 @@
     display: flex;
     flex-direction: column;
 }
+
+.formul {
+    color: cornflowerblue;
+    font-size: 12px;
+}
+
+/* .total__box {
+    display: none;
+} */
 
